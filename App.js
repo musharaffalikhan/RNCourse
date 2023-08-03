@@ -12,26 +12,18 @@ import GoalItem from "./components/GoalItem";
 import GoalInput from "./components/GoalInput";
 
 export default function App() {
-  const [enteredGoal, setEnteredGoal] = useState("");
   const [goals, setGoals] = useState([]);
-  const goalInputHandler = (enteredText) => {
-    setEnteredGoal(enteredText);
-  };
-  const addGoalHandler = () => {
+
+  const addGoalHandler = (enteredGoal) => {
     setGoals((currentGoals) => [
       ...currentGoals,
       { text: enteredGoal, id: Math.random().toString() },
     ]);
-    setEnteredGoal("");
   };
 
   return (
     <View style={styles.appContainer}>
-      <GoalInput
-        goalInputHandler={goalInputHandler}
-        addGoalHandler={addGoalHandler}
-        enteredGoal={enteredGoal}
-      />
+      <GoalInput addGoalHandler={addGoalHandler} />
       <View style={styles.goalsContainer}>
         <FlatList
           data={goals}
